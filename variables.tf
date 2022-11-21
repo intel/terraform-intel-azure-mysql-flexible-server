@@ -180,6 +180,7 @@ variable "db_parameters" {
       transaction_isolation          = {}
     }
   }
+  description = "Intel Cloud optimizations for Xeon processors"
 }
 
 variable "db_username" {
