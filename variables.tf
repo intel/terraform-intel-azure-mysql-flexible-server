@@ -202,13 +202,13 @@ variable "db_password" {
 variable "db_zone" {
   description = "Specifies the Availability Zone in which this MySQL Flexible Server should be located. Possible values are 1, 2 and 3."
   type        = string
-  default     = null
+  default     = 1
 }
 
 variable "db_ha_standby_zone" {
   description = "Specifies the Availability Zone in which the standby Flexible Server should be located. Possible values are 1, 2 and 3."
   type        = string
-  default     = null
+  default     = 2
 }
 
 variable "db_ha_mode" {

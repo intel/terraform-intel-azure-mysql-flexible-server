@@ -33,7 +33,7 @@ output "db_hostname" {
 }
 
 output "db_engine_version_actual" {
-  description = "Running engine version of the database (full version number)"
+  description = "Running engine version of the database (full version number)."
   value       = azurerm_mysql_flexible_server.mysql.version
 }
 
@@ -63,17 +63,17 @@ output "db_replica_role" {
 }
 
 output "db_maintenance_window_day" {
-  description = "Maintainence window for the database instance."
+  description = "Maintenance window for the database instance."
   value       = try(azurerm_mysql_flexible_server.mysql.maintenance_window[0].day_of_week, "")
 }
 
 output "db_maintenance_window_hour" {
-  description = "Maintainence window for the database instance."
+  description = "Maintenance window for the database instance."
   value       = try(azurerm_mysql_flexible_server.mysql.maintenance_window[0].start_hour, "")
 }
 
 output "db_maintenance_window_minute" {
-  description = "Maintainence window for the database instance."
+  description = "Maintenance window for the database instance."
   value       = try(azurerm_mysql_flexible_server.mysql.maintenance_window[0].start_minute, "")
 }
 
@@ -113,7 +113,7 @@ output "db_ha_standby_zone" {
 ########################
 
 output "db_allocated_storage" {
-  description = "Storage that was allocated to the instance when it configured."
+  description = "Storage allocated to the database instance."
   value       = try(azurerm_mysql_flexible_server.mysql.storage[0].size_gb, "")
 }
 
@@ -123,7 +123,7 @@ output "db_auto_grow_enabled" {
 }
 
 output "db_iops" {
-  description = "Database instance iops that was configured."
+  description = "Database instance storage iops configuration."
   value       = try(azurerm_mysql_flexible_server.mysql.storage[0].iops, "")
 }
 
@@ -131,7 +131,7 @@ output "db_iops" {
 ####    Firewall    ####
 ########################
 output "db_firewall_rules" {
-  description = "Monitoring interval configuration."
+  description = "Database Firewall Rules."
   value       = azurerm_mysql_flexible_server_firewall_rule.firewall
 }
 
