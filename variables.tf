@@ -14,135 +14,135 @@ variable "db_server_sku" {
 variable "db_parameters" {
   type = object({
     mysql = optional(object({
-      # table_open_cache = optional(object({
-      #   value = optional(string, "8000")
+      table_open_cache = optional(object({
+        value = optional(string, "8000")
+      }))
+      table_open_cache_instances = optional(object({
+        value = optional(string, "16")
+      }))
+      # Doesn't work on 8.x
+      # max_connections = optional(object({
+      #   value = optional(string, "4000")
       # }))
-      # table_open_cache_instances = optional(object({
+      # Read Only
+      # back_log = optional(object({
+      #   value = optional(string, "1500")
+      # }))
+      # Read Only
+      # default_password_lifetime = optional(object({
+      #   value = optional(string, "0")
+      # }))
+      performance_schema = optional(object({
+        value = optional(string, "OFF")
+      }))
+      max_prepared_stmt_count = optional(object({
+        value = optional(string, "128000")
+      }))
+      character_set_server = optional(object({
+        value = optional(string, "latin1")
+      }))
+      collation_server = optional(object({
+        value = optional(string, "latin1_swedish_ci")
+      }))
+      transaction_isolation = optional(object({
+        value = optional(string, "REPEATABLE-READ")
+      }))
+      innodb_log_file_size = optional(object({
+        value = optional(string, 1024 * 1024 * 1024)
+      }))
+      # Doesn't work on 8.x
+      # innodb_buffer_pool_size = optional(object({
+      #   value = optional(string, 64424509440)
+      # }))
+      innodb_open_files = optional(object({
+        value = optional(string, "4000")
+      }))
+      innodb_file_per_table = optional(object({
+        value = optional(string, "ON")
+      }))
+      # Read Only
+      # innodb_buffer_pool_instances = optional(object({
       #   value = optional(string, "16")
       # }))
-      # # Doesn't work on 8.x
-      # # max_connections = optional(object({
-      # #   value = optional(string, "4000")
-      # # }))
-      # # Read Only
-      # # back_log = optional(object({
-      # #   value = optional(string, "1500")
-      # # }))
-      # # Read Only
-      # # default_password_lifetime = optional(object({
-      # #   value = optional(string, "0")
-      # # }))
-      # performance_schema = optional(object({
-      #   value = optional(string, "OFF")
-      # }))
-      # max_prepared_stmt_count = optional(object({
-      #   value = optional(string, "128000")
-      # }))
-      # character_set_server = optional(object({
-      #   value = optional(string, "latin1")
-      # }))
-      # collation_server = optional(object({
-      #   value = optional(string, "latin1_swedish_ci")
-      # }))
-      # transaction_isolation = optional(object({
-      #   value = optional(string, "REPEATABLE-READ")
-      # }))
-      # innodb_log_file_size = optional(object({
-      #   value = optional(string, 1024 * 1024 * 1024)
-      # }))
-      # # Doesn't work on 8.x
-      # # innodb_buffer_pool_size = optional(object({
-      # #   value = optional(string, 64424509440)
-      # # }))
-      # innodb_open_files = optional(object({
-      #   value = optional(string, "4000")
-      # }))
-      # innodb_file_per_table = optional(object({
-      #   value = optional(string, "ON")
-      # }))
-      # # Read Only
-      # # innodb_buffer_pool_instances = optional(object({
-      # #   value = optional(string, "16")
-      # # }))
-      # innodb_log_buffer_size = optional(object({
-      #   value = optional(string, "67108864")
-      # }))
-      # innodb_thread_concurrency = optional(object({
+      innodb_log_buffer_size = optional(object({
+        value = optional(string, "67108864")
+      }))
+      innodb_thread_concurrency = optional(object({
+        value = optional(string, "0")
+      }))
+      # Read Only
+      # innodb_flush_log_at_trx_commit = optional(object({
       #   value = optional(string, "0")
       # }))
-      # # Read Only
-      # # innodb_flush_log_at_trx_commit = optional(object({
-      # #   value = optional(string, "0")
-      # # }))
-      # innodb_max_dirty_pages_pct = optional(object({
-      #   value = optional(string, "90")
+      innodb_max_dirty_pages_pct = optional(object({
+        value = optional(string, "90")
+      }))
+      innodb_max_dirty_pages_pct_lwm = optional(object({
+        value = optional(string, "10")
+      }))
+      join_buffer_size = optional(object({
+        value = optional(string, 32 * 1024)
+      }))
+      sort_buffer_size = optional(object({
+        value = optional(string, 32 * 1024)
+      }))
+      # Read Only
+      # innodb_use_native_aio = optional(object({
+      #   value = optional(string, "1")
       # }))
-      # innodb_max_dirty_pages_pct_lwm = optional(object({
-      #   value = optional(string, "10")
-      # }))
-      # join_buffer_size = optional(object({
-      #   value = optional(string, 32 * 1024)
-      # }))
-      # sort_buffer_size = optional(object({
-      #   value = optional(string, 32 * 1024)
-      # }))
-      # # Read Only
-      # # innodb_use_native_aio = optional(object({
-      # #   value = optional(string, "1")
-      # # }))
-      # innodb_stats_persistent = optional(object({
-      #   value = optional(string, "ON")
-      # }))
-      # innodb_spin_wait_delay = optional(object({
-      #   value = optional(string, "6")
-      # }))
-      # innodb_max_purge_lag_delay = optional(object({
-      #   value = optional(string, "300000")
-      # }))
-      # innodb_max_purge_lag = optional(object({
-      #   value = optional(string, "0")
-      # }))
-      # # Read Only
-      # # innodb_checksum_algorithm = optional(object({
-      # #   value = optional(string, "none")
-      # # }))
-      # innodb_io_capacity = optional(object({
-      #   value = optional(string, "4000")
-      # }))
-      # innodb_io_capacity_max = optional(object({
-      #   value = optional(string, "20000")
-      # }))
-      # innodb_lru_scan_depth = optional(object({
-      #   value = optional(string, "9000")
-      # }))
-      # innodb_change_buffering = optional(object({
+      innodb_stats_persistent = optional(object({
+        value = optional(string, "ON")
+      }))
+      innodb_spin_wait_delay = optional(object({
+        value = optional(string, "6")
+      }))
+      innodb_max_purge_lag_delay = optional(object({
+        value = optional(string, "300000")
+      }))
+      innodb_max_purge_lag = optional(object({
+        value = optional(string, "0")
+      }))
+      # Read Only
+      # innodb_checksum_algorithm = optional(object({
       #   value = optional(string, "none")
       # }))
-      # innodb_page_cleaners = optional(object({
-      #   value = optional(string, "4")
-      # }))
-      # # Read Only
-      # # innodb_undo_log_truncate = optional(object({
-      # #   value = optional(string, "0")
-      # # }))
-      # innodb_adaptive_flushing = optional(object({
-      #   value = optional(string, "ON")
-      # }))
-      # innodb_flush_neighbors = optional(object({
+      innodb_io_capacity = optional(object({
+        value = optional(string, "4000")
+      }))
+      innodb_io_capacity_max = optional(object({
+        value = optional(string, "20000")
+      }))
+      innodb_lru_scan_depth = optional(object({
+        value = optional(string, "9000")
+      }))
+      innodb_change_buffering = optional(object({
+        value = optional(string, "none")
+      }))
+      innodb_page_cleaners = optional(object({
+        value = optional(string, "4")
+      }))
+      # Read Only
+      # innodb_undo_log_truncate = optional(object({
       #   value = optional(string, "0")
       # }))
-      # innodb_read_io_threads = optional(object({
-      #   value = optional(string, "16")
-      # }))
-      # innodb_write_io_threads = optional(object({
-      #   value = optional(string, "16")
-      # }))
-      # innodb_purge_threads = optional(object({
-      #   value = optional(string, "4")
-      # }))
-      # innodb_adaptive_hash_index = optional(object({
-      #   value = optional(string, "OFF")
-      # }))
+      innodb_adaptive_flushing = optional(object({
+        value = optional(string, "ON")
+      }))
+      innodb_flush_neighbors = optional(object({
+        value = optional(string, "0")
+      }))
+      innodb_read_io_threads = optional(object({
+        value = optional(string, "16")
+      }))
+      innodb_write_io_threads = optional(object({
+        value = optional(string, "16")
+      }))
+      innodb_purge_threads = optional(object({
+        value = optional(string, "4")
+      }))
+      innodb_adaptive_hash_index = optional(object({
+        value = optional(string, "OFF")
+      }))
     }))
   })
   default = {
