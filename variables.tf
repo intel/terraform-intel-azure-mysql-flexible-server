@@ -2,7 +2,7 @@
 ####     Intel      ####
 ########################
 
-# See policies.md, we recommend the Eds_v5-series running on the 3rd Generation Intel® Xeon® Platinum 8370C (Ice Lake) scalable procesors. 
+# See policies.md, Intel recommends the Eds_v5-series running on the 3rd Generation Intel® Xeon® Platinum 8370C (Ice Lake) scalable procesors. 
 # Memory Optimized: MO_Standard_E2ds_v5, MO_Standard_E4ds_v5, MO_Standard_E8ds_v5, MO_Standard_E16ds_v5, MO_Standard_E20ds_v5, MO_Standard_E32ds_v5,MO_Standard_E48ds_v5, MO_Standard_E64ds_v5
 # The number between E and d in MO_Standard_E8ds_v5 stands for vCores. 
 # Ex.: MO_Standard_E8ds_v5-> 8 stands for vCPU count
@@ -186,12 +186,9 @@ variable "db_parameters" {
   description = "Intel Cloud optimizations for Xeon processors"
 }
 
-variable "db_username" {
-  description = "Username for the master database user."
-  type        = string
-  default     = "mysqladmin"
-}
-
+########################
+####    Required    ####
+########################
 variable "db_password" {
   description = "Password for the master database user."
   type        = string
@@ -200,6 +197,26 @@ variable "db_password" {
     condition     = length(var.db_password) >= 8
     error_message = "The db_password value must be at least 8 characters in length."
   }
+}
+
+variable "db_server_name" {
+  description = "Name of the server that will be created."
+  type        = string
+}
+
+# REQUIRED - Resource Group Name
+variable "resource_group_name" {
+  description = "Resource Group where resource will be created. It should already exist"
+  type        = string
+}
+
+########################
+####     Other      ####
+########################
+variable "db_username" {
+  description = "Username for the master database user."
+  type        = string
+  default     = "mysqladmin"
 }
 
 variable "db_zone" {
@@ -277,14 +294,9 @@ variable "db_name" {
   default     = null
 }
 
-#TODO Check with Lucas on this validation
 variable "db_engine_version" {
   description = "Database engine version for the Azure database instance."
   type        = string
-  validation {
-    condition     = contains(["5.7", "8.0.21"], var.db_engine_version)
-    error_message = "The db_engine_version must be \"5.7\" or \"8.0.21\"."
-  }
   default = "8.0.21"
 }
 
@@ -292,11 +304,6 @@ variable "db_restore_time" {
   description = "When create_mode is PointInTimeRestore, specifies the point in time to restore from creation_source_server_id. It should be provided in RFC3339 format, e.g. 2013-11-08T22:00:40Z."
   type        = string
   default     = null
-}
-
-variable "db_server_name" {
-  description = "Name of the server that will be created."
-  type        = string
 }
 
 variable "db_iops" {
@@ -349,12 +356,6 @@ variable "db_engine" {
     error_message = "The db_engine must be \"mysql\"."
   }
   default = "mysql"
-}
-
-# REQUIRED - Resource Group Name
-variable "resource_group_name" {
-  description = "Resource Group where resource will be created. It should already exist"
-  type        = string
 }
 
 variable "tags" {
