@@ -18,9 +18,9 @@ module "optimized-mysql-server" {
       start_ip_address = "0.0.0.0"
     },
     {
-      end_ip_address   = "172.16.1.1"
+      end_ip_address   = "172.16.1.254"   
       name             = "Test-Rule"
-      start_ip_address = "172.16.1.254"
+      start_ip_address = "172.16.1.1"
     }
   ]
 }
