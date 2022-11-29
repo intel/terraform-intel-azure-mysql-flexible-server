@@ -1,4 +1,4 @@
-#PostgreSQL Sever SKU
+#AzureSQL Sever SKU
 #The Eds_v4-series run on the 3rd Generation Intel® Xeon® Platinum 8370C (Ice Lake), the Intel® Xeon® Platinum 8272CL (Cascade Lake) processors.
 # We recommend Memory Optimized instances (2- 64 vCores) - MO_Standard_E2ds_v4, MO_Standard_E4ds_v4, MO_Standard_E8ds_v4, MO_Standard_E16ds_v4, MO_Standard_E20ds_v4, MO_Standard_E32ds_v4,MO_Standard_E48ds_v4, MO_Standard_E64ds_v4
 # The number between E and d in MO_Standard_E8ds_v4 stands for vCores.
@@ -20,18 +20,6 @@ variable "db_parameters" {
       table_open_cache_instances = optional(object({
         value = optional(string, "16")
       }))
-      # Doesn't work on 8.x
-      # max_connections = optional(object({
-      #   value = optional(string, "4000")
-      # }))
-      # Read Only
-      # back_log = optional(object({
-      #   value = optional(string, "1500")
-      # }))
-      # Read Only
-      # default_password_lifetime = optional(object({
-      #   value = optional(string, "0")
-      # }))
       performance_schema = optional(object({
         value = optional(string, "OFF")
       }))
@@ -50,30 +38,18 @@ variable "db_parameters" {
       innodb_log_file_size = optional(object({
         value = optional(string, 1024 * 1024 * 1024)
       }))
-      # Doesn't work on 8.x
-      # innodb_buffer_pool_size = optional(object({
-      #   value = optional(string, 64424509440)
-      # }))
       innodb_open_files = optional(object({
         value = optional(string, "4000")
       }))
       innodb_file_per_table = optional(object({
         value = optional(string, "ON")
       }))
-      # Read Only
-      # innodb_buffer_pool_instances = optional(object({
-      #   value = optional(string, "16")
-      # }))
       innodb_log_buffer_size = optional(object({
         value = optional(string, "67108864")
       }))
       innodb_thread_concurrency = optional(object({
         value = optional(string, "0")
       }))
-      # Read Only
-      # innodb_flush_log_at_trx_commit = optional(object({
-      #   value = optional(string, "0")
-      # }))
       innodb_max_dirty_pages_pct = optional(object({
         value = optional(string, "90")
       }))
@@ -86,10 +62,6 @@ variable "db_parameters" {
       sort_buffer_size = optional(object({
         value = optional(string, 32 * 1024)
       }))
-      # Read Only
-      # innodb_use_native_aio = optional(object({
-      #   value = optional(string, "1")
-      # }))
       innodb_stats_persistent = optional(object({
         value = optional(string, "ON")
       }))
@@ -102,10 +74,6 @@ variable "db_parameters" {
       innodb_max_purge_lag = optional(object({
         value = optional(string, "0")
       }))
-      # Read Only
-      # innodb_checksum_algorithm = optional(object({
-      #   value = optional(string, "none")
-      # }))
       innodb_io_capacity = optional(object({
         value = optional(string, "4000")
       }))
@@ -121,10 +89,6 @@ variable "db_parameters" {
       innodb_page_cleaners = optional(object({
         value = optional(string, "4")
       }))
-      # Read Only
-      # innodb_undo_log_truncate = optional(object({
-      #   value = optional(string, "0")
-      # }))
       innodb_adaptive_flushing = optional(object({
         value = optional(string, "ON")
       }))
@@ -181,6 +145,44 @@ variable "db_parameters" {
     }
   }
   description = "Intel Cloud optimizations for Xeon processors"
+     
+      # Doesn't work on 8.x
+      # innodb_buffer_pool_size = optional(object({
+      #   value = optional(string, 64424509440)
+      # }))
+      # Doesn't work on 8.x
+      # max_connections = optional(object({
+      #   value = optional(string, "4000")
+      # }))
+      /* This parameter is READ-Only in Azure Portal with Defaults given below*/
+      # Read Only
+      # back_log = optional(object({
+      #   value = optional(string, "1500")
+      # }))
+      # Read Only
+      # default_password_lifetime = optional(object({
+      #   value = optional(string, "0")
+      # }))
+      # Read Only
+      # innodb_buffer_pool_instances = optional(object({
+      #   value = optional(string, "16")
+      # }))
+      # Read Only
+      # innodb_flush_log_at_trx_commit = optional(object({
+      #   value = optional(string, "0")
+      # }))
+      # Read Only
+      # innodb_use_native_aio = optional(object({
+      #   value = optional(string, "1")
+      # }))
+      # Read Only
+      # innodb_undo_log_truncate = optional(object({
+      #   value = optional(string, "0")
+      # }))
+      # Read Only
+      # innodb_checksum_algorithm = optional(object({
+      #   value = optional(string, "none")
+      # }))
 }
 
 variable "db_username" {
