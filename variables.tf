@@ -23,18 +23,9 @@ variable "db_parameters" {
       table_open_cache_instances = optional(object({
         value = optional(string, "16")
       }))
-      # Doesn't work on 8.x
-      # max_connections = optional(object({
-      #   value = optional(string, "4000")
-      # }))
-      # Read Only
-      # back_log = optional(object({
-      #   value = optional(string, "1500")
-      # }))
-      # Read Only
-      # default_password_lifetime = optional(object({
-      #   value = optional(string, "0")
-      # }))
+      max_connections = optional(object({
+        value = optional(string, "10900")
+      }))
       performance_schema = optional(object({
         value = optional(string, "OFF")
       }))
@@ -53,30 +44,18 @@ variable "db_parameters" {
       innodb_log_file_size = optional(object({
         value = optional(string, 1024 * 1024 * 1024)
       }))
-      # Doesn't work on 8.x
-      # innodb_buffer_pool_size = optional(object({
-      #   value = optional(string, 64424509440)
-      # }))
       innodb_open_files = optional(object({
         value = optional(string, "4000")
       }))
       innodb_file_per_table = optional(object({
         value = optional(string, "ON")
       }))
-      # Read Only
-      # innodb_buffer_pool_instances = optional(object({
-      #   value = optional(string, "16")
-      # }))
       innodb_log_buffer_size = optional(object({
         value = optional(string, "67108864")
       }))
       innodb_thread_concurrency = optional(object({
         value = optional(string, "0")
       }))
-      # Read Only
-      # innodb_flush_log_at_trx_commit = optional(object({
-      #   value = optional(string, "0")
-      # }))
       innodb_max_dirty_pages_pct = optional(object({
         value = optional(string, "90")
       }))
@@ -89,10 +68,6 @@ variable "db_parameters" {
       sort_buffer_size = optional(object({
         value = optional(string, 32 * 1024)
       }))
-      # Read Only
-      # innodb_use_native_aio = optional(object({
-      #   value = optional(string, "1")
-      # }))
       innodb_stats_persistent = optional(object({
         value = optional(string, "ON")
       }))
@@ -105,10 +80,6 @@ variable "db_parameters" {
       innodb_max_purge_lag = optional(object({
         value = optional(string, "0")
       }))
-      # Read Only
-      # innodb_checksum_algorithm = optional(object({
-      #   value = optional(string, "none")
-      # }))
       innodb_io_capacity = optional(object({
         value = optional(string, "4000")
       }))
@@ -124,10 +95,6 @@ variable "db_parameters" {
       innodb_page_cleaners = optional(object({
         value = optional(string, "4")
       }))
-      # Read Only
-      # innodb_undo_log_truncate = optional(object({
-      #   value = optional(string, "0")
-      # }))
       innodb_adaptive_flushing = optional(object({
         value = optional(string, "ON")
       }))
@@ -146,6 +113,39 @@ variable "db_parameters" {
       innodb_adaptive_hash_index = optional(object({
         value = optional(string, "OFF")
       }))
+      # Values not supported by Azure MySQL Flexible server 
+      # Read Only
+      # back_log = optional(object({
+      #   value = optional(string, "1500")
+      # }))
+      # Read Only
+      # default_password_lifetime = optional(object({
+      #   value = optional(string, "0")
+      # }))
+      # Not required, Azure Mysql Azure sets this to the maximum 
+      # innodb_buffer_pool_size = optional(object({
+      #   value = optional(string, 64424509440)
+      # }))
+      # Read Only
+      # innodb_buffer_pool_instances = optional(object({
+      #   value = optional(string, "16")
+      # }))
+      # Read Only
+      # innodb_flush_log_at_trx_commit = optional(object({
+      #   value = optional(string, "0")
+      # }))
+      # Read Only
+      # innodb_use_native_aio = optional(object({
+      #   value = optional(string, "1")
+      # }))
+      # Read Only
+      # innodb_checksum_algorithm = optional(object({
+      #   value = optional(string, "none")
+      # }))
+      # Read Only
+      # innodb_undo_log_truncate = optional(object({
+      #   value = optional(string, "0")
+      # }))
     }))
   })
   default = {
@@ -176,6 +176,7 @@ variable "db_parameters" {
       innodb_write_io_threads        = {}
       join_buffer_size               = {}
       max_prepared_stmt_count        = {}
+      max_connections                = {}
       performance_schema             = {}
       sort_buffer_size               = {}
       table_open_cache               = {}
@@ -204,7 +205,6 @@ variable "db_server_name" {
   type        = string
 }
 
-# REQUIRED - Resource Group Name
 variable "resource_group_name" {
   description = "Resource Group where resource will be created. It should already exist"
   type        = string
@@ -297,7 +297,7 @@ variable "db_name" {
 variable "db_engine_version" {
   description = "Database engine version for the Azure database instance."
   type        = string
-  default = "8.0.21"
+  default     = "8.0.21"
 }
 
 variable "db_restore_time" {
