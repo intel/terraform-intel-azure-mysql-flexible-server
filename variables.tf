@@ -1,4 +1,7 @@
-#PostgreSQL Sever SKU
+########################
+####     Intel      ####
+########################
+
 # See policies.md, Intel recommends the Eds_v5-series running on the 3rd Generation Intel® Xeon® Platinum 8370C (Ice Lake) scalable procesors. 
 # Memory Optimized: MO_Standard_E2ds_v5, MO_Standard_E4ds_v5, MO_Standard_E8ds_v5, MO_Standard_E16ds_v5, MO_Standard_E20ds_v5, MO_Standard_E32ds_v5,MO_Standard_E48ds_v5, MO_Standard_E64ds_v5
 # The number between E and d in MO_Standard_E8ds_v5 stands for vCores. 
