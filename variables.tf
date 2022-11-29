@@ -1,7 +1,4 @@
-########################
-####     Intel      ####
-########################
-
+#PostgreSQL Sever SKU
 # See policies.md, Intel recommends the Eds_v5-series running on the 3rd Generation Intel® Xeon® Platinum 8370C (Ice Lake) scalable procesors. 
 # Memory Optimized: MO_Standard_E2ds_v5, MO_Standard_E4ds_v5, MO_Standard_E8ds_v5, MO_Standard_E16ds_v5, MO_Standard_E20ds_v5, MO_Standard_E32ds_v5,MO_Standard_E48ds_v5, MO_Standard_E64ds_v5
 # The number between E and d in MO_Standard_E8ds_v5 stands for vCores. 
@@ -186,6 +183,44 @@ variable "db_parameters" {
     }
   }
   description = "Intel Cloud optimizations for Xeon processors"
+     
+      # Doesn't work on 8.x
+      # innodb_buffer_pool_size = optional(object({
+      #   value = optional(string, 64424509440)
+      # }))
+      # Doesn't work on 8.x
+      # max_connections = optional(object({
+      #   value = optional(string, "4000")
+      # }))
+      /* This parameter is READ-Only in Azure Portal with Defaults given below*/
+      # Read Only
+      # back_log = optional(object({
+      #   value = optional(string, "1500")
+      # }))
+      # Read Only
+      # default_password_lifetime = optional(object({
+      #   value = optional(string, "0")
+      # }))
+      # Read Only
+      # innodb_buffer_pool_instances = optional(object({
+      #   value = optional(string, "16")
+      # }))
+      # Read Only
+      # innodb_flush_log_at_trx_commit = optional(object({
+      #   value = optional(string, "0")
+      # }))
+      # Read Only
+      # innodb_use_native_aio = optional(object({
+      #   value = optional(string, "1")
+      # }))
+      # Read Only
+      # innodb_undo_log_truncate = optional(object({
+      #   value = optional(string, "0")
+      # }))
+      # Read Only
+      # innodb_checksum_algorithm = optional(object({
+      #   value = optional(string, "none")
+      # }))
 }
 
 ########################
