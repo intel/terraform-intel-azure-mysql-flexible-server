@@ -8,6 +8,7 @@
 # Ex.: MO_Standard_E8ds_v5-> 8 stands for vCPU count
 # See more:
 # https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-compute-storage
+
 variable "db_server_sku" {
   description = "Instance SKU, see comments above for guidance"
   type        = string
