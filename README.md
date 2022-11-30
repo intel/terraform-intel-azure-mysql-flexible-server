@@ -4,8 +4,11 @@
 
 # Intel Cloud Optimization Modules for Terraform
 
-## Azure MySQL Flexible Server Module 
-This module can be used to deploy an Intel optimized Azure MySQL Flexible Server instance. 
+© Copyright 2022, Intel Corporation
+
+## Azure MySQL Flexible Server Module
+
+This module can be used to deploy an Intel optimized Azure MySQL Flexible Server instance.
 Instance selection and mysql optimization are included by default in the code.
 
 The MySQL Optimizations were based off [Intel Xeon Tunning guides](<https://www.intel.com/content/www/us/en/developer/articles/guide/open-source-database-tuning-guide-on-xeon-systems.html>)
@@ -54,7 +57,6 @@ terraform apply
 ```
 
 Note that this example creates resources. Run `terraform destroy` when you don't need these resources.
-
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
