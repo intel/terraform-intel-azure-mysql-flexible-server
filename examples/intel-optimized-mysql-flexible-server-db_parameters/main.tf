@@ -1,11 +1,11 @@
 # Provision Intel Optimized Azure MySql server
 module "optimized-mysql-server" {
-  source              = "../../"
-  resource_group_name = "resource_group_name"    # Required
-  db_server_name      = "optimized-mysql-server" # Required
-  db_password         = var.db_password          # Required
-  db_ha_mode          = "SameZone"               # Optional
-  db_name             = "test-db"                # Optional
+  source              = "github.com/intel/terraform-intel-azure-mysql_flexible_server"
+  resource_group_name = "mysql-resource-group-name"     # Required
+  db_server_name      = "mysql-test-21"                 # Required
+  db_password         = var.db_password                 # Required
+  db_ha_mode          = "SameZone"                      # Optional
+  db_name             = "test-db"                       # Optional
   tags = {
     name    = "name"
     purpose = "intel"

@@ -148,44 +148,44 @@ variable "db_parameters" {
     }
   }
   description = "Intel Cloud optimizations for Xeon processors"
-     
-      # Doesn't work on 8.x
-      # innodb_buffer_pool_size = optional(object({
-      #   value = optional(string, 64424509440)
-      # }))
-      # Doesn't work on 8.x
-      # max_connections = optional(object({
-      #   value = optional(string, "4000")
-      # }))
-      /* This parameter is READ-Only in Azure Portal with Defaults given below*/
-      # Read Only
-      # back_log = optional(object({
-      #   value = optional(string, "1500")
-      # }))
-      # Read Only
-      # default_password_lifetime = optional(object({
-      #   value = optional(string, "0")
-      # }))
-      # Read Only
-      # innodb_buffer_pool_instances = optional(object({
-      #   value = optional(string, "16")
-      # }))
-      # Read Only
-      # innodb_flush_log_at_trx_commit = optional(object({
-      #   value = optional(string, "0")
-      # }))
-      # Read Only
-      # innodb_use_native_aio = optional(object({
-      #   value = optional(string, "1")
-      # }))
-      # Read Only
-      # innodb_undo_log_truncate = optional(object({
-      #   value = optional(string, "0")
-      # }))
-      # Read Only
-      # innodb_checksum_algorithm = optional(object({
-      #   value = optional(string, "none")
-      # }))
+
+  # Doesn't work on 8.x
+  # innodb_buffer_pool_size = optional(object({
+  #   value = optional(string, 64424509440)
+  # }))
+  # Doesn't work on 8.x
+  # max_connections = optional(object({
+  #   value = optional(string, "4000")
+  # }))
+  /* This parameter is READ-Only in Azure Portal with Defaults given below*/
+  # Read Only
+  # back_log = optional(object({
+  #   value = optional(string, "1500")
+  # }))
+  # Read Only
+  # default_password_lifetime = optional(object({
+  #   value = optional(string, "0")
+  # }))
+  # Read Only
+  # innodb_buffer_pool_instances = optional(object({
+  #   value = optional(string, "16")
+  # }))
+  # Read Only
+  # innodb_flush_log_at_trx_commit = optional(object({
+  #   value = optional(string, "0")
+  # }))
+  # Read Only
+  # innodb_use_native_aio = optional(object({
+  #   value = optional(string, "1")
+  # }))
+  # Read Only
+  # innodb_undo_log_truncate = optional(object({
+  #   value = optional(string, "0")
+  # }))
+  # Read Only
+  # innodb_checksum_algorithm = optional(object({
+  #   value = optional(string, "none")
+  # }))
 }
 
 ########################
@@ -299,7 +299,7 @@ variable "db_name" {
 variable "db_engine_version" {
   description = "Database engine version for the Azure database instance."
   type        = string
-  default = "8.0.21"
+  default     = "8.0.21"
 }
 
 variable "db_restore_time" {

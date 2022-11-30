@@ -1,27 +1,18 @@
 # Provision Intel Optimized Azure MySql server
 module "optimized-mysql-server" {
-  source              = "../../"
-  resource_group_name = "resource-group-name"    # Required
-  db_server_name      = "optimized-mysql-server" # Required
-  db_password         = var.db_password          # Required
-  db_ha_mode          = "SameZone"               # Optional
-  db_name             = "test-db"                # Optional
+  source              = "github.com/intel/terraform-intel-azure-mysql_flexible_server"
+  resource_group_name = "resource_group_name"
+  db_server_name      = "terraformtestingpoc01"
+  db_password         = var.db_password
   tags = {
     name    = "name"
     purpose = "intel"
   }
-  # Optional but I need someone to do testing with these.
   db_firewall_rules = [
     {
-      end_ip_address   = "0.0.0.0"
-      name             = "Azure-All-Services"
-      start_ip_address = "0.0.0.0"
-    },
-    {
-      end_ip_address   = "172.16.1.254"   
-      name             = "Test-Rule"
-      start_ip_address = "172.16.1.1"
+      name             = "Services"
+      start_ip_address = "192.168.10.0"
+      end_ip_address   = "192.168.10.50"
     }
   ]
 }
-
