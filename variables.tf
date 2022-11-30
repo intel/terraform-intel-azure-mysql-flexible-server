@@ -123,7 +123,7 @@ variable "db_parameters" {
       # default_password_lifetime = optional(object({
       #   value = optional(string, "0")
       # }))
-      # Not required, Azure Mysql Azure sets this to the maximum allowed the instance available memory (~70%)
+      # Not required, Azure sets this to the maximum allowed the instance available memory (~70%)
       # innodb_buffer_pool_size = optional(object({
       #   value = optional(string, 64424509440)
       # }))
