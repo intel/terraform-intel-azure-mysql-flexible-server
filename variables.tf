@@ -8,6 +8,7 @@
 # Ex.: MO_Standard_E8ds_v5-> 8 stands for vCPU count
 # See more:
 # https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-compute-storage
+
 variable "db_server_sku" {
   description = "Instance SKU, see comments above for guidance"
   type        = string
@@ -22,6 +23,9 @@ variable "db_parameters" {
       }))
       table_open_cache_instances = optional(object({
         value = optional(string, "16")
+      }))
+      max_connections = optional(object({
+        value = optional(string, "10900")
       }))
       performance_schema = optional(object({
         value = optional(string, "OFF")
@@ -110,6 +114,39 @@ variable "db_parameters" {
       innodb_adaptive_hash_index = optional(object({
         value = optional(string, "OFF")
       }))
+      # Values not supported by Azure MySQL Flexible server 
+      # Read Only
+      # back_log = optional(object({
+      #   value = optional(string, "1500")
+      # }))
+      # Read Only
+      # default_password_lifetime = optional(object({
+      #   value = optional(string, "0")
+      # }))
+      # Not required, Azure sets this to the maximum allowed the instance available memory (~70%)
+      # innodb_buffer_pool_size = optional(object({
+      #   value = optional(string, 64424509440)
+      # }))
+      # Read Only
+      # innodb_buffer_pool_instances = optional(object({
+      #   value = optional(string, "16")
+      # }))
+      # Read Only
+      # innodb_flush_log_at_trx_commit = optional(object({
+      #   value = optional(string, "0")
+      # }))
+      # Read Only
+      # innodb_use_native_aio = optional(object({
+      #   value = optional(string, "1")
+      # }))
+      # Read Only
+      # innodb_checksum_algorithm = optional(object({
+      #   value = optional(string, "none")
+      # }))
+      # Read Only
+      # innodb_undo_log_truncate = optional(object({
+      #   value = optional(string, "0")
+      # }))
     }))
   })
   default = {
@@ -140,6 +177,7 @@ variable "db_parameters" {
       innodb_write_io_threads        = {}
       join_buffer_size               = {}
       max_prepared_stmt_count        = {}
+      max_connections                = {}
       performance_schema             = {}
       sort_buffer_size               = {}
       table_open_cache               = {}
@@ -206,7 +244,6 @@ variable "db_server_name" {
   type        = string
 }
 
-# REQUIRED - Resource Group Name
 variable "resource_group_name" {
   description = "Resource Group where resource will be created. It should already exist"
   type        = string
