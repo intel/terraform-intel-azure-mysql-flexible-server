@@ -57,7 +57,7 @@ resource "azurerm_mysql_flexible_server" "mysql" {
     for_each = length(local.ha_flag) >= 1 ? { "ha_flag" : "" } : {}
     content {
       mode                      = var.db_ha_mode
-      standby_availability_zone = var.db_ha_mode == "SameZone" ? var.db_zone : var.db_ha_standby_zone
+      standby_availability_zone = var.db_ha_mode == "SameZone" ? null : var.db_ha_standby_zone
     }
   }
 
