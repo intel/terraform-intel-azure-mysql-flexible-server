@@ -6,9 +6,9 @@
 
 © Copyright 2022, Intel Corporation
 
-## Azure MySQL Flexible Server Module - Additional Options Example
+## Azure MySQL Flexible Server Module - Database Parameters Example
 
-This example creates an Intel optimized Azure MySQL Flexible Server database with additional options for firewall rules. The database instance is created on an Intel Icelake Eds_v5 by default. The database server is pre-configured with parameters within the database parameter group that is optimized for Intel architecture. The goal of this module is to get you started with a database configured to run best on Intel architecture.
+This example creates an Intel optimized Azure MySQL Flexible Server database and optimizes the database parameters. The database instance is created on an Intel Icelake Eds_v5 by default. The database server is pre-configured with parameters within the database parameter group that is optimized for Intel architecture. The goal of this module is to get you started with a database configured to run best on Intel architecture.
 
 As you configure your application's environment, choose the configurations for your infrastructure that matches your application's requirements.
 
@@ -20,10 +20,10 @@ The MySQL Optimizations were based off [Intel Xeon Tunning guides](<https://www.
 
 By default, you will only have to pass three variables
 
-```hcl      
+```hcl
 resource_group_name    
 db_server_name       
-db_password        
+db_password      
 ```
 
 variables.tf
@@ -42,7 +42,7 @@ main.tf
 module "optimized-mysql-server" {
   source              = "intel/azure-mysql-flexible-server/intel"
   resource_group_name = "mysql-resource-group-name" # Required
-  db_server_name      = "mysql-test-22"             # Required
+  db_server_name      = "mysql-test-21"             # Required
   db_password         = var.db_password             # Required
   db_ha_mode          = "SameZone"                  # Optional
   db_name             = "test-db"                   # Optional
@@ -50,18 +50,25 @@ module "optimized-mysql-server" {
     name    = "name"
     purpose = "intel"
   }
-  db_firewall_rules = [
-    {
-      end_ip_address   = "0.0.0.0"
-      name             = "Azure-All-Services"
-      start_ip_address = "0.0.0.0"
-    },
-    {
-      end_ip_address   = "172.16.1.254"
-      name             = "Test-Rule"
-      start_ip_address = "172.16.1.1"
+
+  db_parameters = {
+    mysql = {
+      character_set_server = {
+        value = "latin1"
+      }
+      collation_server = {
+        value = "latin1_swedish_ci"
+      }
+      innodb_adaptive_flushing = {
+        value = "ON"
+      }
+      innodb_adaptive_hash_index = {
+        value = "OFF"
+      }
     }
-  ]
+  }
+
+
 }
 
 ```
@@ -77,7 +84,6 @@ terraform apply
 ```
 
 Note that this example creates resources. Run `terraform destroy` when you don't need these resources.
-
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 

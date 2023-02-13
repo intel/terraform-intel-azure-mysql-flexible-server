@@ -1,3 +1,75 @@
+<p align="center">
+  <img src="https://github.com/intel/terraform-intel-azure-mysql-flexible-server/blob/main/images/logo-classicblue-800px.png?raw=true" alt="Intel Logo" width="250"/>
+</p>
+
+# Intel Cloud Optimization Modules for Terraform
+
+© Copyright 2022, Intel Corporation
+
+## Azure MySQL Flexible Server Module
+
+This example creates an Intel optimized Azure MySQL Flexible Server database. The database instance is created on an Intel Icelake Eds_v5 by default. The database server is pre-configured with parameters within the database parameter group that is optimized for Intel architecture. The goal of this module is to get you started with a database configured to run best on Intel architecture.
+
+As you configure your application's environment, choose the configurations for your infrastructure that matches your application's requirements.
+
+This module can be used to deploy an Intel optimized Azure MySQL Flexible Server instance.
+
+The MySQL Optimizations were based off [Intel Xeon Tunning guides](<https://www.intel.com/content/www/us/en/developer/articles/guide/open-source-database-tuning-guide-on-xeon-systems.html>)
+
+## Usage
+
+By default, you will only have to pass three variables
+
+```hcl     
+resource_group_name    
+db_server_name       
+db_password         
+```
+
+variables.tf
+
+```hcl
+variable "db_password" {
+  description = "Password for the master database user."
+  type        = string
+  sensitive   = true
+}
+```
+
+main.tf
+
+```hcl
+module "optimized-mysql-server" {
+  source              = "intel/azure-mysql-flexible-server/intel"
+  resource_group_name = "resource_group_name"
+  db_server_name      = "terraformtestingpoc01"
+  db_password         = var.db_password
+  tags = {
+    name    = "name"
+    purpose = "intel"
+  }
+  db_firewall_rules = [
+    {
+      name             = "Services"
+      start_ip_address = "192.168.10.0"
+      end_ip_address   = "192.168.10.50"
+    }
+  ]
+}
+
+```
+
+Run Terraform
+
+```hcl
+export TF_VAR_db_password ='<USE_A_STRONG_PASSWORD>'
+
+terraform init  
+terraform plan
+terraform apply 
+```
+
+Note that this example creates resources. Run `terraform destroy` when you don't need these resources.
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
