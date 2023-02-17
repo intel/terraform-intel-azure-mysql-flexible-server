@@ -42,9 +42,6 @@ variable "db_parameters" {
       transaction_isolation = optional(object({
         value = optional(string, "REPEATABLE-READ")
       }))
-      innodb_log_file_size = optional(object({
-        value = optional(string, 1024 * 1024 * 1024)
-      }))
       innodb_open_files = optional(object({
         value = optional(string, "4000")
       }))
@@ -114,6 +111,10 @@ variable "db_parameters" {
       innodb_adaptive_hash_index = optional(object({
         value = optional(string, "OFF")
       }))
+      # Non-Configurable parameters by Azure Flexible server
+      /* innodb_log_file_size = optional(object({
+        value = optional(string, 1024 * 1024 * 1024)
+      })) */
       # Values not supported by Azure MySQL Flexible server 
       # Read Only
       # back_log = optional(object({
@@ -161,7 +162,6 @@ variable "db_parameters" {
       innodb_io_capacity             = {}
       innodb_io_capacity_max         = {}
       innodb_log_buffer_size         = {}
-      innodb_log_file_size           = {}
       innodb_lru_scan_depth          = {}
       innodb_max_dirty_pages_pct     = {}
       innodb_max_dirty_pages_pct_lwm = {}
