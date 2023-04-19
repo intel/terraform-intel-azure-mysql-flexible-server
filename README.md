@@ -13,7 +13,7 @@ Instance selection and mysql optimization are included by default in the code.
 
 The MySQL Optimizations were based off [Intel Xeon Tunning guides](<https://www.intel.com/content/www/us/en/developer/articles/guide/open-source-database-tuning-guide-on-xeon-systems.html>)
 
-## Data points
+## Performance Data
 
 <center>
 
@@ -21,7 +21,7 @@ The MySQL Optimizations were based off [Intel Xeon Tunning guides](<https://www.
 
 <p align="center">
   <a href="https://www.intel.com/content/www/us/en/partner/workload/microsoft/mysql-on-azure-8vcpu-benchmark.html">
-  <img src="./images/mysql1.png?raw=true" alt="MySQL" width="600"/>
+  <img src="https://github.com/intel/terraform-intel-azure-mysql-flexible-server/blob/main/images/mysql1.png?raw=true" alt="MySQL" width="600"/>
   </a>
 </p>
 
@@ -32,7 +32,7 @@ The MySQL Optimizations were based off [Intel Xeon Tunning guides](<https://www.
 
 <p align="center">
   <a href="https://techcommunity.microsoft.com/t5/azure-database-for-mysql-blog/boost-azure-mysql-business-critical-flexible-server-performance/ba-p/3603698">
-  <img src="./images/mysql2.png?raw=true" alt="MySQL" width="600"/>
+  <img src="https://github.com/intel/terraform-intel-azure-mysql-flexible-server/blob/main/images/mysql2.png?raw=true" alt="MySQL" width="600"/>
   </a>
 </p>
 
@@ -43,7 +43,7 @@ The MySQL Optimizations were based off [Intel Xeon Tunning guides](<https://www.
 
 <p align="center">
   <a href="https://www.intel.com/content/www/us/en/partner/workload/microsoft/mysql-server-snapshot.html?wapkw=mysql%20optimized">
-  <img src="./images/mysql3.png?raw=true" alt="MySQL" width="600"/>
+  <img src="https://github.com/intel/terraform-intel-azure-mysql-flexible-server/blob/main/images/mysql3.png?raw=true" alt="MySQL" width="600"/>
   </a>
 </p>
 
