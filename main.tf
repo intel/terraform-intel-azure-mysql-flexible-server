@@ -100,7 +100,7 @@ resource "azurerm_mysql_flexible_database" "mysql" {
   timeouts {
     create = var.db_timeouts.create
     delete = var.db_timeouts.delete
-    update = var.db_timeouts.update
+    #update = var.db_timeouts.update
   }
 }
 
