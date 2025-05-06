@@ -1,7 +1,7 @@
 # Provision Intel Optimized Azure MySql server
 module "optimized-mysql-server" {
   source              = "intel/azure-mysql-flexible-server/intel"
-  resource_group_name = "terraform-testing-rg"
+  resource_group_name = "mihika-terraform-testing-rg"
   db_server_name      = "terraformtestingpoc01"
   db_password         = var.db_password
   tags = {
